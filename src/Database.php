@@ -162,10 +162,16 @@ class Database {
 	 * @return void
 	 * @throws Exception
 	 */
-	public function connect($host, $username, $password, $database) {
+	public function connect($host = null, $username = null, $password = null, $database = null) {
 
 		// Attempt a connection to the database
 		try {
+
+            // Retrieve Parameters
+            $host = $host ?: $this->Host;
+            $username = $username ?: $this->Username;
+            $password = $password ?: $this->Password;
+            $database = $database ?: $this->Database;
 
 			// Debug Information
 			$this->Logger->info("Establishing connection to database.");
