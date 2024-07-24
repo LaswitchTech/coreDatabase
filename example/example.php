@@ -12,11 +12,20 @@ $Database = new Database();
 // Configure Database, you can also use a config file
 $Database->config("host","localhost")->config("username","demo")->config("password","demo")->config("database","demo1");
 
-// Connect to Database
-$Database->connect();
+// Connect to Database if not connected
+if(!$Database->isConnected()){
+    $Database->connect();
+}
+
+// Set $Database as a global variable
+$GLOBALS['Database'] = $Database;
 
 // Example 1: Create a table
 function install(){
+
+    // Set $Database from global variable
+    global $Database;
+
     // Check if the database is connected
     if($Database->isConnected()){
         // Check if table exists (optional)
@@ -34,6 +43,10 @@ function install(){
 
 // Example 2: Alter a table
 function alter(){
+
+    // Set $Database from global variable
+    global $Database;
+
     // Check if the database is connected
     if($Database->isConnected()){
         // Check if table exists (optional)
@@ -66,6 +79,10 @@ function alter(){
 
 // Example 3: Drop a table
 function uninstall(){
+
+    // Set $Database from global variable
+    global $Database;
+
     // Check if the database is connected
     if($Database->isConnected()){
         // Check if table exists (optional)
@@ -78,6 +95,10 @@ function uninstall(){
 
 // Example 4: Insert Data
 function insert(){
+
+    // Set $Database from global variable
+    global $Database;
+
     // Check if the database is connected
     if($Database->isConnected()){
         // Check if table exists (optional)
@@ -90,6 +111,10 @@ function insert(){
 
 // Example 5: Select Data
 function select(){
+
+    // Set $Database from global variable
+    global $Database;
+
     // Check if the database is connected
     if($Database->isConnected()){
         // Check if table exists (optional)
@@ -102,6 +127,10 @@ function select(){
 
 // Example 6: Update Data
 function update(){
+
+    // Set $Database from global variable
+    global $Database;
+
     // Check if the database is connected
     if($Database->isConnected()){
         // Check if table exists (optional)
@@ -114,6 +143,10 @@ function update(){
 
 // Example 7: Delete Data
 function delete(){
+
+    // Set $Database from global variable
+    global $Database;
+
     // Check if the database is connected
     if($Database->isConnected()){
         // Check if table exists (optional)
@@ -126,6 +159,10 @@ function delete(){
 
 // Example 8: Backup Database
 function backup(){
+
+    // Set $Database from global variable
+    global $Database;
+
     // Check if the database is connected
     if($Database->isConnected()){
         // Backup database
@@ -135,6 +172,10 @@ function backup(){
 
 // Example 9: Restore Database
 function restore(){
+
+    // Set $Database from global variable
+    global $Database;
+
     // Check if the database is connected
     if($Database->isConnected()){
         // Restore database
@@ -144,6 +185,10 @@ function restore(){
 
 // Example 10: Creating Database Schema
 function schema(){
+
+    // Set $Database from global variable
+    global $Database;
+
     // Check if the database is connected
     if($Database->isConnected()){
         // Create schema
@@ -153,6 +198,10 @@ function schema(){
 
 // Example 11: Upgrade Database Schema
 function upgrade(){
+
+    // Set $Database from global variable
+    global $Database;
+
     // Check if the database is connected
     if($Database->isConnected()){
         // Upgrade schema, if no version is provided, the latest version will be used
@@ -162,6 +211,10 @@ function upgrade(){
 
 // Example 12: Getters
 function get(){
+
+    // Set $Database from global variable
+    global $Database;
+
     // Check if the database is connected
     if($Database->isConnected()){
         // Get table, returns an array or null when table does not exist
@@ -181,6 +234,10 @@ function get(){
 
 // Example 13: Advanced
 function advanced(){
+
+    // Set $Database from global variable
+    global $Database;
+
     // Check if the database is connected
     if($Database->isConnected()){
         // Install the basics
@@ -227,4 +284,3 @@ function advanced(){
         backup();
     }
 }
-
