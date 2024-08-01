@@ -284,3 +284,5 @@ function advanced(){
         backup();
     }
 }
+
+install();
