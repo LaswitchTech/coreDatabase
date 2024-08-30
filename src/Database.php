@@ -389,9 +389,10 @@ class Database {
 
 			// Log any errors and throw an exception
 			$this->Logger->error($e->getMessage());
-			throw New Exception( $e->getMessage() );
+
+            // Return
+            return false;
 		}
-		return false;
 	}
 
 	/**
