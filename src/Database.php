@@ -389,9 +389,10 @@ class Database {
 
 			// Log any errors and throw an exception
 			$this->Logger->error($e->getMessage());
-			throw New Exception( $e->getMessage() );
+
+            // Return
+            return false;
 		}
-		return false;
 	}
 
 	/**
@@ -693,6 +694,36 @@ class Database {
 			throw new Exception($e->getMessage());
 		}
 	}
+
+	/**
+	 * Retrieve the tables in the database.
+	 *
+	 * @return array
+	 * @throws Exception
+	 */
+	public function getTables() {
+        try {
+
+            // Retrieve the tables in the database
+            $result = $this->connection->query("SHOW TABLES");
+
+            // Initialize the tables array
+            $tables = array();
+
+            // Generate the tables array
+            while ($row = $result->fetch_row()) {
+                $tables[] = $row[0];
+            }
+
+            // Return the array of tables
+            return $tables;
+        } catch(Exception $e) {
+
+            // Log any errors and throw an exception
+            $this->Logger->error($e->getMessage());
+            throw new Exception($e->getMessage());
+        }
+    }
 
 	/**
 	 * Retrieve the columns of a table.
