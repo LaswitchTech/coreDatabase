@@ -356,7 +356,13 @@ class Database {
 		try {
 			// Execute the query and retrieve the result set as an associative array
 			$stmt = $this->execute( $query, $params );
-			$result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+
+            // Check if the result is a SELECT query
+            if($result = $stmt->get_result()){
+                $result = $result->fetch_all(MYSQLI_ASSOC);
+            } else {
+                $result = [];
+            }
 
 			// Return result
 			return $result;
